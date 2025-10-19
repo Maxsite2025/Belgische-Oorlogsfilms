@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Belgische Oorlogsfilms — Index</title>
+  <meta name="description" content="Gids en overzicht van Belgische oorlogsfilms — titels, trailers, regisseurs en lokale recensies (NL / FR / EN).">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='80'>⚔️</text></svg>">
+  <style>
+    :root{
+      --bg:#0b1220; --panel:#0f1724; --muted:#9aa4b2; --accent:#b23a48; --glass:rgba(255,255,255,0.03);
+      --maxw:1200px; --radius:12px; --gap:16px; --ff-sans: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:var(--ff-sans);background:linear-gradient(180deg,#071026,var(--bg));color:#e6eef6}
+    a{color:inherit}
+    .wrap{max-width:var(--maxw);margin:28px auto;padding:20px}
+
+    /* Header */
+    header{display:flex;align-items:center;gap:16px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#1f2a44,#102030);display:grid;place-items:center;font-size:24px}
+    h1{margin:0;font-size:20px}
+    .lead{color:var(--muted);font-size:13px}
+    nav{margin-left:auto;display:flex;gap:8px;align-items:center}
+    .navlink{background:transparent;border:0;color:var(--muted);padding:8px 10px;border-radius:8px;cursor:pointer}
+    .lang-switch{background:var(--glass);border:1px solid rgba(255,255,255,0.03);padding:6px 10px;border-radius:8px;cursor:pointer}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:20px;margin-top:18px}
+    .hero-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.03));padding:18px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+    .hero-visual{border-radius:var(--radius);overflow:hidden;height:280px;background-size:cover;background-position:center}
+    .cta{margin-top:12px;display:flex;gap:8px}
+    .btn{background:var(--accent);padding:10px 12px;border-radius:10px;border:0;color:white;cursor:pointer}
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.05);padding:10px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+    /* Grid */
+    .section{margin-top:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap)}
+    .card{background:var(--panel);border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.03)}
+    .poster{height:320px;background-size:cover;background-position:center}
+    .meta{padding:12px}
+    .title{font-weight:700;margin:0}
+    .sub{font-size:13px;color:var(--muted);margin-top:6px}
+    .actions{display:flex;gap:8px;margin-top:10px}
+    .secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+
+    /* timeline */
+    .timeline{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .timeline .pill{background:rgba(255,255,255,0.03);padding:10px;border-radius:999px;color:var(--muted);font-size:13px}
+
+    /* modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(2,6,20,0.7);padding:20px}
+    .modal.open{display:flex}
+    .modal .box{width:min(1000px,98%);background:#071427;padding:18px;border-radius:10px;max-height:92vh;overflow:auto}
+    .close{float:right;background:transparent;border:0;color:var(--muted);font-size:18px}
+
+    footer{margin-top:24px;padding:14px;border-radius:10px;background:transparent;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:980px){.hero{grid-template-columns:1fr}.poster{height:220px}.hero-visual{height:180px}}
+
+    /* small touches */
+    input,textarea,select{font-family:inherit}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>⚔️</div>
+        <div>
+          <h1 id="siteTitle">Belgische Oorlogsfilms</h1>
+          <div class="lead" id="siteDesc">Gids met achtergrond, trailers en recensies — NL / FR / EN</div>
+        </div>
+      </div>
+      <nav role="navigation" aria-label="Hoofdmenu">
+        <button class="navlink" data-scroll="home" id="navHome">Home</button>
+        <button class="navlink" data-scroll="films" id="navFilms">Films</button>
+        <button class="navlink" data-scroll="about" id="navAbout">Over</button>
+        <select id="langSelect" class="lang-switch" aria-label="Taal kiezen">
+          <option value="nl">Nederlands</option>
+          <option value="fr">Français</option>
+          <option value="en">English</option>
+        </select>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero-card">
+        <h2 id="heroTitle">Belgische verhalen in oorlogsfilms</h2>
+        <p id="heroDesc">Een toegankelijke, visuele gids met aanbevolen titels, regisseurs en lokale recensies. Klik op een kaart voor details en trailers.</p>
+
+        <div class="timeline" aria-hidden>
+          <div class="pill">Eerste Wereldoorlog (1914–1918)</div>
+          <div class="pill">Tweede Wereldoorlog (1939–1945)</div>
+          <div class="pill">Hedendaagse conflicten</div>
+        </div>
+
+        <div class="cta">
+          <button class="btn" id="toFilms">Bekijk films</button>
+          <button class="ghost" id="aboutBtn">Meer over het project</button>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div id="heroImage" class="hero-visual" role="img" aria-label="Soldaten en herinnering" style="background-image:url('https://images.unsplash.com/photo-1517817748490-3a0b2b9b3f8b?auto=format&fit=crop&w=1400&q=60')"></div>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px">Informatie correct en bruikbaar voor onderwijs en presentatie — vervang beelden naar wens.</div>
+      </div>
+    </section>
+
+    <main id="films" class="section" aria-labelledby="filmsTitle">
+      <h2 id="filmsTitle">Aanbevolen titels</h2>
+      <p id="filmsIntro" style="color:var(--muted)">Selectie van films met korte context, regisseur en trailer. Voeg eenvoudig eigen titels, links of afbeeldingen toe.</p>
+
+      <div class="grid" id="filmGrid" aria-live="polite"></div>
+    </main>
+
+    <section id="about" class="section">
+      <h2 id="aboutTitle">Over dit project</h2>
+      <p id="aboutDesc">Deze statische website is een startpunt: tweetalig (NL/FR) + Engels toegevoegd. Recensies worden lokaal opgeslagen in jouw browser. Het ontwerp is responsive en toegankelijk.</p>
+      <ul style="color:var(--muted)">
+        <li>Gebruik: onderwijs & presentatie</li>
+        <li>Data: lokaal opgeslagen (localStorage)</li>
+        <li>Uitbreidbaar met archieflinks en restauratieprojecten</li>
+      </ul>
+    </section>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center">
+        <div><strong id="footerTitle">Belgische Oorlogsfilms</strong><div style="color:var(--muted)">© 2025</div></div>
+        <div style="text-align:right;color:var(--muted)">Contact: <a href="mailto:info@example.com">info@example.com</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="box" role="document">
+      <button class="close" id="closeModal" aria-label="Sluit">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // -----------------------------
+    // Data (aanpasbaar)
+    // -----------------------------
+    const films = [
+      {id:0, title:{nl:'Daens',fr:'Daens',en:'Daens'}, year:1992, director:'Stijn Coninx', period:'Late 19e eeuw', desc:{nl:'Drama over sociale strijd en arbeidersomstandigheden in België.',fr:"Drame sur la lutte sociale et les conditions des ouvriers en Belgique.",en:'Drama about social struggle and workers\' conditions in Belgium.'}, poster:'https://images.unsplash.com/photo-1533757103612-6f2f2f1c0a7b?auto=format&fit=crop&w=800&q=60', trailer:'https://www.youtube.com/embed/5wz2Rg7i9E0'},
+      {id:1, title:{nl:'De Slag om de Schelde',fr:'La Bataille de l\'Escaut',en:'The Forgotten Battle'}, year:2020, director:'Mattijs van Heijningen Jr.', period:'WOII', desc:{nl:'Reconstructie van gevechten in en rond de Schelde en de impact op de regio.',fr:'Reconstitution des combats autour de l\'Escaut et leur impact.',en:'Reconstruction of the fighting around the Scheldt and its regional impact.'}, poster:'https://images.unsplash.com/photo-1542206395-9feb3edaa68d?auto=format&fit=crop&w=800&q=60', trailer:'https://www.youtube.com/embed/J1Er1Wy0EoA'},
+      {id:2, title:{nl:'Bastogne',fr:'Bastogne',en:'Bastogne'}, year:2008, director:'Kris Van Den Broeck', period:'WOII', desc:{nl:'Series/film rond de Slag om de Ardennen.',fr:'Série/film autour de la bataille des Ardennes.',en:'Series/film about the Battle of the Bulge.'}, poster:'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=60', trailer:'https://www.youtube.com/embed/example3'},
+      {id:3, title:{nl:'Kamp Holland',fr:'Kamp Holland',en:'Kamp Holland'}, year:2010, director:'Rick de Leeuw', period:'Modern', desc:{nl:'Fictie rond soldaten en hun nalatenschap.',fr:'Fiction autour des soldats et de leur héritage.',en:'Fiction about soldiers and their legacy.'}, poster:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=800&q=60', trailer:'https://www.youtube.com/embed/example4'}
+    ];
+
+    // -----------------------------
+    // Internationalisatie
+    // -----------------------------
+    const strings = {
+      nl:{view:'Bekijk',reviews:'Recensies',write:'Schrijf een recensie',rating:'Beoordeling',submit:'Verstuur',noreviews:'Nog geen recensies'},
+      fr:{view:'Voir',reviews:'Avis',write:'Écrire un avis',rating:'Note',submit:'Envoyer',noreviews:"Pas d'avis"},
+      en:{view:'View',reviews:'Reviews',write:'Write a review',rating:'Rating',submit:'Submit',noreviews:'No reviews yet'}
+    };
+
+    // -----------------------------
+    // State
+    // -----------------------------
+    let lang = localStorage.getItem('lang') || 'nl';
+    const filmGrid = document.getElementById('filmGrid');
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+    const langSelect = document.getElementById('langSelect');
+
+    // set initial language select
+    langSelect.value = lang;
+
+    // -----------------------------
+    // Render helpers
+    // -----------------------------
+    function t(key){ return strings[lang][key]; }
+
+    function renderTexts(){
+      document.getElementById('siteTitle').innerText = (lang==='nl')? 'Belgische Oorlogsfilms' : (lang==='fr')? 'Films de Guerre Belgique' : 'Belgian War Films';
+      document.getElementById('siteDesc').innerText = (lang==='nl')? 'Gids met achtergrond, trailers en recensies — NL / FR / EN' : (lang==='fr')? 'Guide avec contextes, bandes-annonces et avis — NL / FR / EN' : 'Guide with context, trailers and reviews — NL / FR / EN';
+      document.getElementById('heroTitle').innerText = (lang==='nl')? 'Belgische verhalen in oorlogsfilms' : (lang==='fr')? 'Histoires belges dans les films de guerre' : 'Belgian stories in war films';
+      document.getElementById('heroDesc').innerText = (lang==='nl')? 'Een toegankelijke, visuele gids met aanbevolen titels, regisseurs en lokale recensies.' : (lang==='fr')? 'Un guide visuel et accessible avec titres et avis locaux.' : 'An accessible visual guide with recommended titles and local reviews.';
+      document.getElementById('filmsTitle').innerText = (lang==='nl')? 'Aanbevolen titels' : (lang==='fr')? 'Titres recommandés' : 'Recommended titles';
+      document.getElementById('aboutTitle').innerText = (lang==='nl')? 'Over dit project' : (lang==='fr')? 'À propos du projet' : 'About this project';
+      document.getElementById('aboutDesc').innerText = (lang==='nl')? 'Deze statische website is een startpunt: tweetalig (NL/FR) + Engels toegevoegd.' : (lang==='fr')? 'Ce site statique est un point de départ : multilingue et extensible.' : 'This static site is a starting point: multilingual and extendable.';
+      document.getElementById('footerTitle').innerText = (lang==='nl')? 'Belgische Oorlogsfilms' : (lang==='fr')? 'Films de Guerre Belgique' : 'Belgian War Films';
+    }
+
+    function renderFilms(){
+      filmGrid.innerHTML = '';
+      films.forEach(f => {
+        const div = document.createElement('article');
+        div.className = 'card';
+        div.innerHTML = `
+          <div class='poster' style="background-image:url('${f.poster}')" aria-hidden='true'></div>
+          <div class='meta'>
+            <h3 class='title'>${escapeHtml(f.title[lang])}</h3>
+            <div class='sub'>${f.year} · ${escapeHtml(f.director)} · ${f.period}</div>
+            <p class='sub' style='margin-top:8px;color:var(--muted)'>${escapeHtml(f.desc[lang])}</p>
+            <div class='actions'>
+              <button class='btn' data-id='${f.id}' onclick='openFilm(${f.id})'>${t('view')}</button>
+              <button class='secondary' onclick='focusFilm(${f.id})'>Meer</button>
+            </div>
+          </div>`;
+        filmGrid.appendChild(div);
+      });
+    }
+
+    // -----------------------------
+    // Modal / Film details
+    // -----------------------------
+    function openFilm(id){
+      const f = films.find(x=>x.id===id);
+      if(!f) return;
+      modalContent.innerHTML = '';
+      const container = document.createElement('div');
+      container.innerHTML = `
+        <h2>${escapeHtml(f.title[lang])} <small style='color:var(--muted);font-weight:400'>(${f.year})</small></h2>
+        <div style='color:var(--muted)'>${escapeHtml(f.director)} · ${escapeHtml(f.period)}</div>
+        <p style='margin-top:8px;color:var(--muted)'>${escapeHtml(f.desc[lang])}</p>
+        <div style='margin-top:12px;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px'>
+          <iframe src='${f.trailer}' title='Trailer ${escapeHtml(f.title[lang])}' style='position:absolute;top:0;left:0;width:100%;height:100%;border:0' allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>
+        </div>
+        <section style='margin-top:12px'>
+          <h3>${t('reviews')}</h3>
+          <div id='reviewsContainer'></div>
+          <div style='margin-top:8px'>
+            <label>${t('rating')}: <select id='ratingSelect'><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+            <div style='margin-top:6px'><textarea id='reviewText' rows='3' style='width:100%' placeholder='${(lang==='nl')? 'Schrijf je recensie...' : (lang==='fr')? 'Écrivez votre avis...' : 'Write your review...'}'></textarea></div>
+            <div style='margin-top:8px'><button class='btn' onclick='submitReview(${f.id})'>${t('submit')}</button></div>
+          </div>
+        </section>`;
+      modalContent.appendChild(container);
+      renderReviews(f.id);
+      openModal();
+    }
+
+    function openModal(){
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+      // focus management
+      const closeBtn = document.getElementById('closeModal');
+      closeBtn.focus();
+    }
+
+    function closeModalFn(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+    }
+
+    document.getElementById('closeModal').addEventListener('click',closeModalFn);
+    window.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModalFn(); });
+    modal.addEventListener('click',e=>{ if(e.target===modal) closeModalFn(); });
+
+    // -----------------------------
+    // Reviews (localStorage)
+    // -----------------------------
+    function submitReview(id){
+      const rating = document.getElementById('ratingSelect').value;
+      const text = document.getElementById('reviewText').value.trim();
+      if(!text) return alert((lang==='nl')? 'Voeg tekst toe aan je recensie.' : (lang==='fr')? 'Veuillez ajouter du texte.' : 'Please add text to your review.');
+      const reviews = JSON.parse(localStorage.getItem('reviews-'+id) || '[]');
+      const item = {rating:parseInt(rating,10), text, date:new Date().toISOString()};
+      reviews.unshift(item);
+      localStorage.setItem('reviews-'+id, JSON.stringify(reviews));
+      document.getElementById('reviewText').value='';
+      renderReviews(id);
+    }
+
+    function renderReviews(id){
+      const container = document.getElementById('reviewsContainer');
+      container.innerHTML = '';
+      const reviews = JSON.parse(localStorage.getItem('reviews-'+id) || '[]');
+      if(reviews.length===0){ container.innerHTML = `<div style='color:var(--muted)'>${t('noreviews')}</div>`; return }
+      reviews.forEach(r=>{
+        const d = document.createElement('div');
+        d.style.borderTop='1px solid rgba(255,255,255,0.03)';
+        d.style.padding='8px 0';
+        const date = new Date(r.date).toLocaleString(lang);
+        d.innerHTML = `<div>${'⭐'.repeat(r.rating)} <span style='color:var(--muted);font-size:12px;margin-left:8px'>${escapeHtml(date)}</span></div><p style='margin:6px 0;color:var(--muted)'>${escapeHtml(r.text)}</p>`;
+        container.appendChild(d);
+      });
+    }
+
+    // -----------------------------
+    // Utilities & init
+    // -----------------------------
+    function escapeHtml(s){ if(!s) return ''; return String(s).replace(/[&<>\"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])) }
+
+    function focusFilm(id){ const el = document.querySelector(`[data-id='${id}']`); if(el) el.scrollIntoView({behavior:'smooth',block:'center'}); }
+
+    // language change
+    langSelect.addEventListener('change',e=>{ lang = e.target.value; localStorage.setItem('lang',lang); renderTexts(); renderFilms(); });
+
+    // navigation
+    document.querySelectorAll('[data-scroll]').forEach(btn=>btn.addEventListener('click',e=>{ const id=e.currentTarget.getAttribute('data-scroll'); document.getElementById(id).scrollIntoView({behavior:'smooth'}); }));
+    document.getElementById('toFilms').addEventListener('click',()=>document.getElementById('films').scrollIntoView({behavior:'smooth'}));
+    document.getElementById('aboutBtn').addEventListener('click',()=>document.getElementById('about').scrollIntoView({behavior:'smooth'}));
+
+    // initial load
+    renderTexts(); renderFilms();
+
+    // load stored reviews into memory (no-op, kept in localStorage)
+
+  </script>
+</body>
+</html>
