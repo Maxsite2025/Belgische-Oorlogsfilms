@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oorlogsfilms België</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #f9f9f9; color: #333; }
+    header, footer { background: #222; color: white; padding: 1rem; text-align: center; }
+    nav a { color: white; margin: 0 0.5rem; text-decoration: none; }
+    .hero { background: url('https://images.unsplash.com/photo-1517817748490-3a0b2b9b3f8b?auto=format&fit=crop&w=1400&q=60') center/cover; color: white; padding: 4rem 1rem; text-align: center; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+    .film-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 1rem; }
+    .film-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    .film-card img { width: 100%; height: 350px; object-fit: cover; }
+    .film-card .content { padding: 1rem; }
+    .film-card h3 { margin: 0 0 0.5rem; }
+    .film-card button { margin-top: 0.5rem; padding: 0.5rem 1rem; background: #0077cc; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.7); justify-content:center; align-items:center; }
+    .modal-content { background:white; padding:1rem; border-radius:8px; max-width:800px; width:90%; max-height:90%; overflow:auto; }
+    .close-btn { float:right; cursor:pointer; font-size:1.2rem; }
+    .review { border-top:1px solid #ddd; padding:0.5rem 0; }
+    .lang-btn { cursor:pointer; background:#0077cc; color:white; border:none; padding:0.2rem 0.5rem; border-radius:4px; margin-left:0.5rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 id="siteTitle">Oorlogsfilms België</h1>
+  <nav>
+    <a href="#home" id="navHome">Home</a>
+    <a href="#films" id="navFilms">Films</a>
+    <a href="#about" id="navAbout">Over</a>
+    <button class="lang-btn" id="toggleLang">FR</button>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h2 id="heroTitle">Belgische verhalen in oorlogsfilms</h2>
+  <p id="heroDesc">Een startpunt voor filmfanaten, historici en studenten — ontdek films gekoppeld aan periodes en historische context.</p>
+</section>
+
+<div class="container" id="films">
+  <h2 id="filmOverview">Filmoverzicht</h2>
+  <div class="film-grid" id="filmGrid"></div>
+</div>
+
+<section class="container" id="about">
+  <h2 id="aboutTitle">Over dit project</h2>
+  <p id="aboutDesc">Deze statische demo toont Belgische oorlogsfilms met trailers en lokale recensies. Eenvoudig uitbreidbaar met extra films of taalopties.</p>
+</section>
+
+<footer>
+  © 2025 <span id="footerTitle">Oorlogsfilms België</span> — demo
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="closeModal">&times;</span>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+let language = 'nl';
+
+const texts = {
+  nl: {
+    siteTitle:'Oorlogsfilms België', navHome:'Home', navFilms:'Films', navAbout:'Over', heroTitle:'Belgische verhalen in oorlogsfilms', heroDesc:'Een startpunt voor filmfanaten, historici en studenten — ontdek films gekoppeld aan periodes en historische context.', filmOverview:'Filmoverzicht', aboutTitle:'Over dit project', aboutDesc:'Deze statische demo toont Belgische oorlogsfilms met trailers en lokale recensies. Eenvoudig uitbreidbaar met extra films of taalopties.', footerTitle:'Oorlogsfilms België', view:'Bekijk', stars:'Sterren', submit:'Verstuur', reviewPlaceholder:'Schrijf je recensie...'
+  },
+  fr: {
+    siteTitle:'Films de Guerre Belgique', navHome:'Accueil', navFilms:'Films', navAbout:'À propos', heroTitle:'Histoires belges dans les films de guerre', heroDesc:'Un point de départ pour les cinéphiles, historiens et étudiants — découvrez des films liés aux périodes, lieux et contextes historiques.', filmOverview:'Liste des films', aboutTitle:'À propos de ce projet', aboutDesc:'Cette démo statique montre des films de guerre belges avec bandes-annonces et avis locaux. Facile à étendre avec des films supplémentaires ou des options de langue.', footerTitle:'Films de Guerre Belgique', view:'Voir', stars:'Étoiles', submit:'Envoyer', reviewPlaceholder:'Écrivez votre avis...'
+  }
+};
+
+const films = [
+  {title:{nl:'Daens',fr:'Daens'}, year:1992, director:'Stijn Coninx', period:'Other', description:{nl:'Drama rond sociale en politieke spanningen in België.',fr:'Drame sur les tensions sociales et politiques en Belgique.'}, poster:'https://via.placeholder.com/400x600?text=Daens', trailer:'https://www.youtube.com/embed/5wz2Rg7i9E0', reviews:[]},
+  {title:{nl:'The Forgotten Battle',fr:'La Bataille Oubliée'}, year:2020, director:'Matthijs van Heijningen Jr.', period:'WOII', description:{nl:'Belgische deelname aan de Slag om de Schelde.',fr:'La participation belge à la bataille de l'Escaut.'}, poster:'https://via.placeholder.com/400x600?text=Forgotten+Battle', trailer:'https://www.youtube.com/embed/J1Er1Wy0EoA', reviews:[]},
+  {title:{nl:'Bastogne',fr:'Bastogne'}, year:2008, director:'Kris Van Den Broeck', period:'WOII', description:{nl:'Verhalen rond de Slag om de Ardennen.',fr:'Histoires autour de la bataille des Ardennes.'}, poster:'https://via.placeholder.com/400x600?text=Bastogne', trailer:'https://www.youtube.com/embed/example3', reviews:[]},
+  {title:{nl:'Kamp Holland',fr:'Kamp Holland'}, year:2010, director:'Rick de Leeuw', period:'WOII', description:{nl:'Belgische soldaten in historische context.',fr:'Soldats belges dans un contexte historique.'}, poster:'https://via.placeholder.com/400x600?text=Kamp+Holland', trailer:'https://www.youtube.com/embed/example4', reviews:[]},
+  {title:{nl:"De Hel van '63",fr:"L'Enfer de '63"}, year:2009, director:'Steven Rooks', period:'Other', description:{nl:'Sport en oorlogsthema’s in België.',fr:'Thèmes de sport et de guerre en Belgique.'}, poster:'https://via.placeholder.com/400x600?text=Hel+van+63', trailer:'https://www.youtube.com/embed/example5', reviews:[]}
+];
+
+const filmGrid = document.getElementById('filmGrid');
+const modal = document.getElementById('modal');
+const modalBody = document.getElementById('modalBody');
+const closeModal = document.getElementById('closeModal');
+const toggleLangBtn = document.getElementById('toggleLang');
+
+function renderTexts(){
+  const t = texts[language];
+  document.getElementById('siteTitle').innerText = t.siteTitle;
+  document.getElementById('navHome').innerText = t.navHome;
+  document.getElementById('navFilms').innerText = t.navFilms;
+  document.getElementById('navAbout').innerText = t.navAbout;
+  document.getElementById('heroTitle').innerText = t.heroTitle;
+  document.getElementById('heroDesc').innerText = t.heroDesc;
+  document.getElementById('filmOverview').innerText = t.filmOverview;
+  document.getElementById('aboutTitle').innerText = t.aboutTitle;
+  document.getElementById('aboutDesc').innerText = t.aboutDesc;
+  document.getElementById('footerTitle').innerText = t.footerTitle;
+  toggleLangBtn.innerText = language==='nl'?'FR':'NL';
+}
+
+function renderFilms(){
+  filmGrid.innerHTML='';
+  films.forEach((film,i)=>{
+    const card=document.createElement('div');
+    card.className='film-card';
+    card.innerHTML=`<img src="${film.poster}" alt="${film.title[language]} poster"><div class='content'><h3>${film.title[language]}</h3><p>${film.year} · ${film.director}</p><p>${film.description[language]}</p><button onclick='openModal(${i})'>${texts[language].view}</button></div>`;
+    filmGrid.appendChild(card);
+  });
+}
+
+function openModal(index){
+  const film=films[index];
+  const t=texts[language];
+  modalBody.innerHTML=`<h2>${film.title[language]} (${film.year})</h2><p>${film.director} · ${film.period}</p><p>${film.description[language]}</p><div style='position:relative;padding-bottom:56.25%;height:0;overflow:hidden;'><iframe src='${film.trailer}' style='position:absolute;top:0;left:0;width:100%;height:100%;' frameborder='0' allowfullscreen></iframe></div><h3>${t.view}</h3><div id='reviewsList'></div><div style='margin-top:1rem;'><label>${t.stars}: <select id='rating'><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label><br><textarea id='reviewText' placeholder='${t.reviewPlaceholder}' style='width:100%;height:60px;margin-top:0.5rem;'></textarea><br><button onclick='submitReview(${index})' style='margin-top:0.5rem;'>${t.submit}</button></div>`;
+  renderReviews(index);
+  modal.style.display='flex';
+}
+
+function close(){modal.style.display='none';}
+closeModal.onclick=close;
+window.onclick=(e)=>{if(e.target==modal) close();}
+
+function submitReview(index){
+  const rating=document.getElementById('rating').value;
+  const text=document.getElementById('reviewText').value;
+  if(text){films[index].reviews.push({rating,text});
+    localStorage.setItem('reviews-'+index,JSON.stringify(films[index].reviews));
+    document.getElementById('reviewText').value='';
+    renderReviews(index);
+  }
+}
+
+function renderReviews(index){
+  const reviewDiv=document.getElementById('reviewsList');
+  reviewDiv.innerHTML='';
+  const saved=JSON.parse(localStorage.getItem('reviews-'+index))||[];
+  saved.forEach(r=>{
+    const div=document.createElement('div');
+    div.className='review';
+    div.innerHTML=`<div>${'⭐'.repeat(r.rating)}</div><p>${r.text}</p>`;
+    reviewDiv.appendChild(div);
+  });
+}
+
+toggleLangBtn.onclick=()=>{language=language==='nl'?'fr':'nl';renderTexts();renderFilms();}
+
+// Load reviews from localStorage on init
+films.forEach((_,i)=>{ const saved=JSON.parse(localStorage.getItem('reviews-'+i))||[]; films[i].reviews=saved; });
+renderTexts();
+renderFilms();
+</script>
+
+</body>
+</html>
